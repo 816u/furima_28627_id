@@ -1,13 +1,15 @@
 ## users テーブル
 
-| Column           | Type   | Options     |
-| ---------------- | ------ | ----------- |
-| nickname         | string | null: false |
-| mail             | string | null: false |
-| password         | string | null: false |
-| password_confirm | string | null: false |
-| user_name        | string | null: false |
-| birthday         | string | null: false |
+| Column               | Type   | Options     |
+| -------------------- | ------ | ----------- |
+| nickname             | string | null: false |
+| email                | string | null: false |
+| encrypted_password   | string | null: false |
+| user_last_name       | string | null: false |
+| user_first_name      | string | null: false |
+| user_last_name_kana  | string | null: false |
+| user_first_name_kana | string | null: false |
+| birthday             | date   | null: false |
 
 ### Association
 - has_many :item
@@ -16,35 +18,33 @@
 
 ## items テーブル
 
-| Column       | Type       | Options                        |
-| ------------ | ---------- | ------------------------------ |
-| item_name    | string     | null: false                    |
-| image        | string     | null: false                    |
-| price        | string     | null: false                    |
-| category     | string     | null: false                    |
-| status       | string     | null: false                    |
-| delivery_fee | string     | null: false                    |
-| consignor    | string     | null: false                    |
-| date         | string     | null: false                    |
-| user         | references | null: false, foreign_key: true |
-| buyer        | references | null: false                    |
+| Column          | Type       | Options                        |
+| --------------- | ---------- | ------------------------------ |
+| item_name       | string     | null: false                    |
+| price           | integer    | null: false                    |
+| category_id     | integer    | null: false                    |
+| status_id       | integer    | null: false                    |
+| delivery_fee_id | integer    | null: false                    |
+| consignor_id    | integer    | null: false                    |
+| date_id         | integer    | null: false                    |
+| user            | references | null: false, foreign_key: true |
+| address         | references | null: false                    |
 
 ### Association
 - belongs_to :user
 - has_many :comment
-- belongs_to :buyer
+- has_one :address
 
-## buyers テーブル
+## addresses テーブル
 
-| Column    | Type       | Options                        |
-| --------- | ---------- | ------------------------------ |
-| address   | string     | null: false                    |
-| card_info | string     | null: false                    |
-| user      | references | null: false, foreign_key: true |
+| Column | Type       | Options                        |
+| ------ | ---------- | ------------------------------ |
+| item   | references | null: false, foreign_key: true |
+| use    | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
-- has_one :item
+- belongs_to :item
 
 ## comments テーブル
 
