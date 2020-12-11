@@ -20,7 +20,7 @@
 
 | Column          | Type       | Options                        |
 | --------------- | ---------- | ------------------------------ |
-| item_name       | string     | null: false                    |
+| name            | string     | null: false                    |
 | price           | integer    | null: false                    |
 | category_id     | integer    | null: false                    |
 | status_id       | integer    | null: false                    |
@@ -28,7 +28,7 @@
 | consignor_id    | integer    | null: false                    |
 | date_id         | integer    | null: false                    |
 | user            | references | null: false, foreign_key: true |
-| address         | references | null: false                    |
+| address         | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -40,7 +40,7 @@
 | Column | Type       | Options                        |
 | ------ | ---------- | ------------------------------ |
 | item   | references | null: false, foreign_key: true |
-| use    | references | null: false, foreign_key: true |
+| user   | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
@@ -50,9 +50,9 @@
 
 | Column | Type       | Options                        |
 | ------ | ---------- | ------------------------------ |
-| text   | references | null: false, foreign_key: true |
+| text   | string     | null: false                    |
 | user   | references | null: false, foreign_key: true |
-| item   | string     | null: false                    |
+| item   | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
